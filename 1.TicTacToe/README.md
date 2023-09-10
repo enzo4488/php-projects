@@ -17,9 +17,9 @@ Features
 Tech Stack
 
 Backend: PHP
-Frontend: HTML, CSS, (optional) JavaScript
-Database: MySQL or SQLite
-Server: Apache or Nginx
+Frontend: HTML, CSS, JavaScript
+Database: MySQL
+Server: Apache
 Version Control: Git
 
 Setup
@@ -30,6 +30,7 @@ Run your local server pointing to the project directory.
 Visit http://localhost in your browser to start the game.
 
 How to Play
+
 Register or log in.
 Start a new game.
 Place your 'X' or 'O' in an empty cell.

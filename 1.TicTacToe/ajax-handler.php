@@ -1,15 +1,6 @@
 <?php
-
-ini_set('display_errors', 1);
-ini_set('display_startup_errors', 1);
-error_reporting(E_ALL);
-$output = ['status' => 'success', 'message' => 'Move made', 'board' => $newBoard];
-error_log(print_r($output, true));
-echo json_encode($output);
-
-
-session_start();  // Start the session
-header('Content-Type: application/json');
+session_start();  // Start the session first
+header('Content-Type: application/json'); // Set the header
 
 include_once '../game/tic-tac-toe.php';  // Includes functions like makeMove, checkWin, etc.
 
@@ -23,6 +14,11 @@ if (!isset($_SESSION['board'])) {
 }
 
 $data = json_decode(file_get_contents('php://input'), true);
+if ($data === null) {
+    echo json_encode(['status' => 'error', 'message' => 'Invalid JSON']);
+    exit();
+}
+
 $row = $data['row'];
 $col = $data['col'];
 $player = $data['player'];
@@ -34,12 +30,14 @@ $newBoard = makeMove($board, $row, $col, $player);
 if ($newBoard !== null) {
     $_SESSION['board'] = $newBoard;  // Update the board in the session
     if (checkWin($newBoard, $player)) {
-        echo json_encode(['status' => 'success', 'message' => "$player wins!", 'board' => $newBoard]);
+        $output = ['status' => 'success', 'message' => "$player wins!", 'board' => $newBoard];
     } elseif (checkDraw($newBoard)) {
-        echo json_encode(['status' => 'success', 'message' => "It's a draw!", 'board' => $newBoard]);
+        $output = ['status' => 'success', 'message' => "It's a draw!", 'board' => $newBoard];
     } else {
-        echo json_encode(['status' => 'success', 'message' => 'Move made', 'board' => $newBoard]);
+        $output = ['status' => 'success', 'message' => 'Move made', 'board' => $newBoard];
     }
 } else {
-    echo json_encode(['status' => 'error', 'message' => 'Invalid move']);
+    $output = ['status' => 'error', 'message' => 'Invalid move'];
 }
+
+echo json_encode($output);
