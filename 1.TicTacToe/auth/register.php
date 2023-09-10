@@ -1,5 +1,6 @@
 <?php
-include_once 'database.php';
+
+include_once 'includes/database.php';
 include_once 'auth/auth-functions.php';
 include_once 'utils/validation-functions.php';
 

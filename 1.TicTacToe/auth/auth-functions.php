@@ -1,4 +1,6 @@
 <?php
+include_once 'includes/database.php';
+
 // Initialize session if not already initialized
 if (session_status() === PHP_SESSION_NONE) {
     session_start();

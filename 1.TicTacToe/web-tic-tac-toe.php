@@ -1,5 +1,13 @@
 <?php
+include_once 'includes/database.php';
+
 session_start();
+
+// Check if user is logged in
+if (!isset($_SESSION['user_id'])) {
+    header('Location: /auth/login.php');
+    exit();
+}
 
 if (!isset($_SESSION['board'])) {
     $_SESSION['board'] = [
@@ -24,6 +32,18 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 }
 
+// Update wins and losses
+
+if (checkWin($board, 'X')) {
+    echo "Player X wins!" . PHP_EOL;
+    if ($_SESSION['currentPlayer'] === 'X') {
+        $pdo = getDatabaseConnection();
+        $sql = "UPDATE users SET wins = wins + 1 WHERE id = ?";
+        $stmt = $pdo->prepare($sql);
+        $stmt->execute([$_SESSION['user_id']]);
+    }
+}
+
 // Display the board
 echo '<pre>';
 foreach ($_SESSION['board'] as $row) {
@@ -32,6 +52,7 @@ foreach ($_SESSION['board'] as $row) {
 echo '</pre>';
 
 ?>
+
 
 <!DOCTYPE html>
 <html>
