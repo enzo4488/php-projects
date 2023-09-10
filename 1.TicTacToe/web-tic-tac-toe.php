@@ -1,5 +1,6 @@
 <?php
 include_once 'includes/database.php';
+include_once '../game/tic-tac-toe.php';
 
 session_start();
 
@@ -54,16 +55,31 @@ echo '</pre>';
 ?>
 
 
+
 <!DOCTYPE html>
 <html>
 <head>
     <title>Tic-Tac-Toe</title>
 </head>
 <body>
+    <?php
+    if (isset($error)) {
+        echo "<p>$error</p>";
+    }
+    ?>
+
     <form action="" method="post">
         Row: <input type="number" name="row" min="0" max="2">
         Column: <input type="number" name="col" min="0" max="2">
         <input type="submit" value="Make Move">
     </form>
+
+    <pre>
+    <?php
+    foreach ($_SESSION['board'] as $row) {
+        echo implode(' ', $row) . PHP_EOL;
+    }
+    ?>
+    </pre>
 </body>
 </html>
