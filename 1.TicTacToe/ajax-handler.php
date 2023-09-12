@@ -4,9 +4,12 @@ error_log(file_get_contents('php://input')); //Debugging
 
 // Check for reset
 if (isset($_GET['reset'])) {
-    // Clear the session variables
-    unset($_SESSION['board']);
-    unset($_SESSION['currentPlayer']);
+    $_SESSION['board'] = [
+        ['-', '-', '-'],
+        ['-', '-', '-'],
+        ['-', '-', '-']
+    ];
+    $_SESSION['currentPlayer'] = 'X';
     echo json_encode(['status' => 'success', 'message' => 'Board reset']);
     exit();
 }
