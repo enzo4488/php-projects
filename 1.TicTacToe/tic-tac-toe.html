@@ -23,6 +23,7 @@
                 }
             }
 
+            // Event listener for making a move
             var form = document.getElementById('moveForm');
             form.addEventListener('submit', function(event) {
                 event.preventDefault();
@@ -33,14 +34,28 @@
                 fetch('ajax-handler.php', {
                     method: 'POST',
                     headers: {
-                        'Content-Type': 'application/json'  // Changed from 'application/x-www-form-urlencoded'
+                        'Content-Type': 'application/json'
                     },
-                    body: JSON.stringify({row: row, col: col, player: 'X'}) // Sending JSON data
+                    body: JSON.stringify({row: row, col: col, player: 'X'})
                 })
                 .then(response => response.json())
                 .then(data => {
                     console.log("Response from server:", data);
                     updateBoard(data.board);
+                })
+                .catch((error) => console.error('Fetch Error:', error));
+            });
+
+            // Event listener for resetting the board
+            document.getElementById("resetBoard").addEventListener("click", function() {
+                fetch('reset-board.php', {
+                    method: 'POST'
+                })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.status === 'success') {
+                        updateBoard(data.board);
+                    }
                 })
                 .catch((error) => console.error('Fetch Error:', error));
             });
@@ -78,6 +93,8 @@
     
     <input type="submit" value="Make Move">
 </form>
+
+<button id="resetBoard">Reset Board</button>
 
 </body>
 </html>
