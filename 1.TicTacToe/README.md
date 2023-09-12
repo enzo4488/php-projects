@@ -4,15 +4,23 @@ Overview
 
 This is a web-based Tic-Tac-Toe game developed using PHP. It serves as a demonstration of key PHP development skills including front-end and back-end integration, session management, data storage, and user interface development.
 
-Features
+Goal of this project is so I get hands-on experience developing a seemingly uncomplicated game using PHP. Turns out, there's a lot of moving parts into making it work.
 
-1. User Authentication: Simple login and registration system to keep track of wins, losses, and draws.
-2. Game Board UI: A 3x3 grid where users can place their 'X' or 'O'.
-3. Game Mechanics: Turn-based gameplay against another player or the computer.
-4. Session Management: Game state and user data are stored across sessions.
-5. Data Storage: Use of MySQL database or flat-file to store user statistics.
-6. Leaderboard: Displays top players based on win-loss records.
-7. Responsive Design: The game is playable on both desktop and mobile devices.
+Features added:
+
+1. Functional Tic-Tac-Toe Game: Created a working Tic-Tac-Toe game that allows for player moves and checks for winning conditions.
+2. Integration with Backend: Successfully integrated the frontend HTML/JavaScript with PHP on the backend using AJAX, allowing for a dynamic and responsive gameplay experience.
+3. Session Management: Utilized PHP sessions to keep track of the game state and current player.
+4. Error Handling: Included various error-handling mechanisms to ensure the application behaves as expected in various scenarios, like invalid moves.
+5. Enhanced User Experience: Modified the game so that players can click directly on the board rather than using a form, making the gameplay more intuitive.
+6. Board Reset Functionality: Added a functional "Reset Board" button.
+7. Styling: Improved the aesthetic of the game board to make it more modern and visually appealing. Also, styled the button and centered the title.
+
+Features to implement:
+-Integrate working user authentication that the user needs to go through to play
+-Feedback mechanisms and visual indicators like a working scoreboard and pop-up messages
+-multiplayer
+
 
 Tech Stack
 
