@@ -1,6 +1,6 @@
 {
     "name": "enzo/tic-tac-toe",
-    "description": "Description of your project",
+    "description": "a simple tic-tac-toe game",
     "require": {
       "php": "^7.3 || ^8.0"
     },

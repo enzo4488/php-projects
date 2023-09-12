@@ -1,5 +1,5 @@
 <?php
-include_once 'includes/database.php';
+include_once '../includes/database.php';
 include_once '../game/tic-tac-toe.php';
 
 session_start();

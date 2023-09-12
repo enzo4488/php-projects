@@ -1,8 +1,9 @@
 <?php
 session_start();  // Start the session first
+error_log(file_get_contents('php://input')); //Debugging
 header('Content-Type: application/json'); // Set the header
 
-include_once '../game/tic-tac-toe.php';  // Includes functions like makeMove, checkWin, etc.
+include_once 'C:/Users/Enzo/Desktop/Xampp/htdocs/php-projects/1.TicTacToe/game/tic-tac-toe.php';
 
 // Initialize the board if it doesn't exist in the session
 if (!isset($_SESSION['board'])) {
@@ -16,6 +17,11 @@ if (!isset($_SESSION['board'])) {
 $data = json_decode(file_get_contents('php://input'), true);
 if ($data === null) {
     echo json_encode(['status' => 'error', 'message' => 'Invalid JSON']);
+    exit();
+}
+
+if (!isset($data['row'], $data['col'], $data['player'])) {
+    echo json_encode(['status' => 'error', 'message' => 'Missing parameters']);
     exit();
 }
 
