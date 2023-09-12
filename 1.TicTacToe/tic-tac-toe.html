@@ -3,22 +3,66 @@
 <head>
     <title>Tic-Tac-Toe</title>
     <style>
-        /* Basic table styling*/
-        td {
-            width: 50px;
-            height: 50px;
-            text-align: center;
-            vertical-align: center;
-            border: 1px solid black;
+        /* Container to hold the board */
+        #tic-tac-toe-board {
+            border-collapse: collapse;
+            margin: 20px auto;
         }
-    </style>
+
+        /* Basic table styling */
+        td {
+            width: 100px;
+            height: 100px;
+            text-align: center;
+            vertical-align: middle;
+            border: 2px solid #333;
+            font-size: 32px;
+            transition: background 0.3s ease;
+            font-family: "Georgia", serif;
+        }
+
+        /* Additional styling for X and O */
+        .x-cell {
+            background-color: #fff;
+            color: #000;
+        }
+
+        .o-cell {
+            background-color: #fff;
+            color: #000;
+        }
+
+        /* Style for empty cells */
+        .empty-cell {
+            background-color: #fff;
+            cursor: pointer;
+        }
+
+        /* Style for hover effect */
+        .empty-cell:hover {
+            background-color: #f9f9f9;
+        }
+    </style>    
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             // Function to update the board
             function updateBoard(board) {
                 for (let row = 0; row < 3; row++) {
                     for (let col = 0; col < 3; col++) {
-                        document.getElementById(`cell-${row}-${col}`).innerText = board[row][col];
+                        const cell = document.getElementById(`cell-${row}-${col}`);
+                        cell.innerText = board[row][col];
+                        
+                        // Remove existing classes
+                        cell.classList.remove("x-cell", "o-cell", "empty-cell");
+                        
+                        // Add new class based on cell content
+                        if (board[row][col] === 'X') {
+                            cell.classList.add("x-cell");
+                        } else if (board[row][col] === 'O') {
+                            cell.classList.add("o-cell");
+                        } else {
+                            cell.classList.add("empty-cell");
+                        }
                     }
                 }
             }
@@ -87,17 +131,7 @@
     </tr>
 </table>
 
-<form id="moveForm">
-    <label for="row">Row:</label>
-    <input type="number" id="row" name="row" min="1" max="3">
-    
-    <label for="col">Column:</label>
-    <input type="number" id="col" name="col" min="1" max="3">
-    
-    <input type="submit" value="Make Move">
-</form>
-
-<button id="resetBoard">Reset Board</button>
+<br><br><button id="resetBoard">Reset Board</button>
 
 </body>
 </html>
